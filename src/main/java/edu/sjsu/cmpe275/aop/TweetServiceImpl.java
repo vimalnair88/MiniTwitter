@@ -14,12 +14,12 @@ public class TweetServiceImpl implements TweetService {
 	
 	public void tweet(String user, String message) throws IllegalArgumentException, IOException {
 
-		System.out.println("Tweeting: "+user+":: "+message);
+		System.out.println("Tweeting :"+user+"==> "+message);
 	}
 
 	public void follow(String follower, String followee) throws IOException {
 		
-		System.out.println("Following: "+follower+":: "+followee);
+		System.out.println("Following: "+follower+"--> "+followee);
 		
 	}
 

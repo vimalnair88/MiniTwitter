@@ -17,6 +17,7 @@ public class Test {
 		TweetService service = context.getBean("tweetService",TweetService.class);
 		TweetStats stats = context.getBean("tweetStats",TweetStats.class);
 		service.tweet("Vimal", "How are you and how is it ggoing");
+		service.tweet("Chunk", "How are you and how is it ggoing");
 		service.follow("Chunk", "Prince");
 		service.follow("Prince", "Vimal");
 		System.out.println("Length of Longest Tweet: "+stats.getLengthOfLongestTweet());
