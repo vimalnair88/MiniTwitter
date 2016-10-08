@@ -1,16 +1,18 @@
 package edu.sjsu.cmpe275.aop;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import edu.sjsu.cmpe275.aop.aspect.RetryAspect;
+/*
+ * Class implementation for retreiving the stats about the Twitter functionality
+ */
 
 public class TweetStatsImpl implements TweetStats {
-
+	/*
+	 * Data for the Stats is pulled in from the Retry Aspect Beans, which is wired below.
+	 */
+	
 	@Autowired
 	private RetryAspect retryAspect;
 	public RetryAspect getRetry() {
@@ -19,13 +21,21 @@ public class TweetStatsImpl implements TweetStats {
 	public void setRetry(RetryAspect retry) {
 		this.retryAspect = retry;
 	}
+	
+	/*
+	 *Function for clearing the data store for tweet data and follow data.
+	 */
 
 	public void resetStats() {
 		retryAspect.clearMap();
 		retryAspect.clearFollowMap();
 		System.out.println("RESET TWEET DATA!!");
 	}
-
+	
+	/*
+	 * Function for getting the length of the longest tweet from the tweets that has been tweeted so far.
+	 */
+	
 	public int getLengthOfLongestTweet() {
 		TreeMap<String, ArrayList<String>> tweets =  retryAspect.getMap();
 		int sum =0;
@@ -39,6 +49,9 @@ public class TweetStatsImpl implements TweetStats {
 		return sum;
 
 	}
+	/*
+	 * Function for getting the Most Active follower.
+	 */
 
 	public String getMostActiveFollower() {
 		TreeMap<String,ArrayList<String>> sortedMap = new TreeMap<String,ArrayList<String>>(retryAspect.getFollowMap());
@@ -52,7 +65,11 @@ public class TweetStatsImpl implements TweetStats {
 		}		
 		return name;
 	}
-
+	
+	/*
+	 * Function for returning the most productive User(The user with the longest tweets so far) 
+	 */
+	
 	public String getMostProductiveUser() {
 		int max=0;
 		String user=null;
